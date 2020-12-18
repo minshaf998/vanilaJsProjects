@@ -2,7 +2,7 @@
   "name": "vanilajsprojects",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "dependencies": {
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
@@ -11,7 +11,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run live",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "live": "live-server"
   },
   "repository": {
     "type": "git",
