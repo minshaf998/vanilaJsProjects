@@ -5,9 +5,9 @@ function larger() {
     num2 = parseInt(num2);
     var larger = "Both are equel";
     if (num1 > num2) {
-        larger = "larger Number is " + num1;
+        larger = "Larger Number is " + num1;
     } else if (num2 > num1) {
-        larger = "larger Number is " + num2;
+        larger = "Larger Number is " + num2;
     }
     document.getElementById("larger").innerHTML = larger;
 }
