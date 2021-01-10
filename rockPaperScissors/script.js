@@ -1,84 +1,45 @@
 const message = document.querySelector(".message");
 const score = document.querySelector(".score");
 const buttons = document.querySelectorAll("button");
-const winnerScores = [0, 0];
+let yourScore = 0;
+let computerScore = 0;
 
-//start the game
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", playGame);
 }
 
 function playGame(e) {
-    let YouSelection = e.target.innerText;
-    let computerSelection = Math.random();
+    let yourSelection = e.target.innerText;
+    const objects = ["Rock", "Paper", "Scisser"];
+    let computerSelection = objects[Math.floor(Math.random() * objects.length)];
+    let result = checkWinner(yourSelection, computerSelection);
 
-    if (computerSelection < 0.34) {
-        computerSelection = "Rock";
-    } else if (computerSelection <= 0.67) {
-        computerSelection = "Paper";
-    } else {
-        computerSelection = "Scissors";
-    }
-
-    let result = checkWinner(YouSelection, computerSelection);
-
-    if (result === "You") {
+    if (result === "you") {
         result += " wins!";
-        winnerScores[0]++;
-    }
+        yourScore++;
+    } else if (result === "computer") {
+        result += " Wins!";
+        computerScore++;
+    } else if (result === "Drow") result += ". It's a tie!";
 
-    if (result === "Computer") {
-        result += " wins!";
-        winnerScores[1]++;
-    }
+    message.innerHTML =
+        "You = " + yourSelection + " || Computer = " + computerSelection;
 
-    if (result === "Draw") {
-        result += ". It's a tie!";
-    }
+    document.getElementById("winner").innerHTML = result;
 
-    score.innerHTML =
-        "You: [ " + winnerScores[0] + " ] Computer: [ " + winnerScores[1] + " ]";
-
-    messenger(
-        "You: <strong>" +
-        YouSelection +
-        "</strong> Computer: <strong>" +
-        computerSelection +
-        "</strong><br>" +
-        result
-    );
+    score.innerHTML = "You = " + yourScore + " || Computer = " + computerScore;
 }
 
-function messenger(selectionMessage) {
-    message.innerHTML = selectionMessage;
-}
-
-function checkWinner(You, computer) {
-    if (You === computer) {
-        return "Draw";
-    }
-
-    if (You === "Rock") {
-        if (computer === "Paper") {
-            return "Computer";
-        } else {
-            return "You";
-        }
-    }
-
-    if (You === "Paper") {
-        if (computer === "Scissors") {
-            return "Computer";
-        } else {
-            return "You";
-        }
-    }
-
-    if (You === "Scissors") {
-        if (computer === "Rock") {
-            return "Computer";
-        } else {
-            return "You";
-        }
+function checkWinner(you, computer) {
+    if (you == computer) return "Drow";
+    else if (you == "Rock") {
+        if (computer == "Paper") return "computer";
+        else return "you";
+    } else if (you == "Paper") {
+        if (computer == "Rock") return "you";
+        else return "computer";
+    } else if (you == "Scisser") {
+        if (computer == "Rock") return "computer";
+        else return "you";
     }
 }
