@@ -1,6 +1,6 @@
 //======================================first button
 const body = document.querySelector("body");
-const colors = ["red", "green", "blue", "yellow", "pink", "purple", "grey"]; // initiating colors
+const colors = ["red", "green", "blue", "yellow", "pink", "purple", "grey","white","purple","orange"]; // initiating colors
 
 body.style.backgroundColor =
     colors[parseInt(Math.floor(Math.random() * colors.length))]; //starting random background color
